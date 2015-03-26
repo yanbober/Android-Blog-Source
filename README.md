@@ -6,7 +6,7 @@
 
 [博客文章链接](http://yanbober.github.io/2015/02/25/android_studio_jni_3/) 
 
-[第一部分实例 NDKApplication](https://github.com/yanbober/Android-Blog-Source/tree/master/NDKApplication)
+[实例代码工程](https://github.com/yanbober/Android-Blog-Source/tree/master/NDKApplication)
 
 
 
