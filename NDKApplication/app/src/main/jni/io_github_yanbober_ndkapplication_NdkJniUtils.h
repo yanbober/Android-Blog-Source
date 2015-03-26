@@ -7,8 +7,7 @@
 extern "C" {
 #endif
 
-JNIEXPORT jstring JNICALL Java_io_github_yanbober_ndkapplication_NdkJniUtils_generateKey
-  (JNIEnv *, jobject, jstring);
+JNIEXPORT jstring JNICALL native_generate_key(JNIEnv *env, jobject obj, jstring name);
 
 #ifdef __cplusplus
 }

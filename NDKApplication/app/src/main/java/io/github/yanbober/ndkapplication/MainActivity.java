@@ -16,6 +16,6 @@ public class MainActivity extends ActionBarActivity {
 
         NdkJniUtils jni = new NdkJniUtils();
         //传入name="vip"到jni代码模拟拿到加密后的key
-        mTextView.setText(jni.generateKey("vip"));
+        mTextView.setText(jni.nativeGenerateKey("vip"));
     }
 }
