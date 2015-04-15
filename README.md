@@ -8,7 +8,11 @@
 
 [实例代码工程](https://github.com/yanbober/Android-Blog-Source/tree/master/NDKApplication)
 
+###博客：facebook Fresco框架库源使用基础
 
+[博客文章链接](http://yanbober.github.io/2015/04/10/opensource-analysis-20/) 
+
+[实例代码工程](https://github.com/yanbober/Android-Blog-Source/tree/master/Fresco-Android-CN-Demo)
 
 ##说明
 

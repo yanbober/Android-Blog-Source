@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/id_simple_drawee_view"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        ></com.facebook.drawee.view.SimpleDraweeView>
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/id_simple_drawee_view1"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/id_simple_drawee_view"
+        ></com.facebook.drawee.view.SimpleDraweeView>
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/id_simple_drawee_view2"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/id_simple_drawee_view1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/id_simple_drawee_view3"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/id_simple_drawee_view"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        fresco:roundAsCircle="true"
+        />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/id_simple_drawee_view4"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/id_simple_drawee_view"
+        android:layout_toRightOf="@+id/id_simple_drawee_view3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        fresco:roundAsCircle="true"
+        fresco:roundingBorderWidth="5dp"
+        fresco:roundingBorderColor="#ffff00ff"
+        />
+
+</RelativeLayout>
