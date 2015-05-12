@@ -2,4 +2,5 @@
 
 ##说明
 
-该实例是博客 [EventBus使用之基础](http://blog.csdn.net/yanbober/article/details/45667363) 的讲解实例Demo。
+该实例是博客 [facebook Fresco框架库源使用基础](http://blog.csdn.net/yanbober/article/details/45307897) 的讲解实例Demo。
+
