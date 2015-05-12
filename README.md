@@ -20,6 +20,13 @@
 
 [实例代码工程](https://github.com/yanbober/Android-Blog-Source/tree/master/Android-MVP-Demo)
 
+###博客：EventBus使用之基础
+
+[博客文章链接](http://blog.csdn.net/yanbober/article/details/45667363) 
+
+[实例代码工程](https://github.com/yanbober/Android-Blog-Source/tree/master/Android-EventBus-Demo)
+
+
 ##说明
 
 系列示例均使用Android Studio演示。
