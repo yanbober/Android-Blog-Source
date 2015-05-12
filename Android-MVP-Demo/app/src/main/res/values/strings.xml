@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Android-MVP-Demo</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title">Android MVP架构Demo</string>
+    <string name="action_settings">Settings</string>
+</resources>
