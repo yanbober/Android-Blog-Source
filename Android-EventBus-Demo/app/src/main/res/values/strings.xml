@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Android-EventBus-Demo</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title">EventBusDemo</string>
+    <string name="get_send">主发主收</string>
+    <string name="get_raund">子发主收</string>
+    <string name="str_3">主发主收Type消息</string>
+    <string name="action_settings">Settings</string>
+</resources>
