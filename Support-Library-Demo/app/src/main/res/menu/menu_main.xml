@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/menu_info_details"
+        android:title="info_details"
+        android:checked="true"
+        android:icon="@android:drawable/ic_menu_info_details"/>
+
+    <item android:id="@+id/menu_share"
+        android:title="share"
+        android:checked="true"
+        android:icon="@android:drawable/ic_menu_share"/>
+
+    <item android:id="@+id/menu_agenda"
+        android:title="agenda"
+        android:checked="true"
+        android:icon="@android:drawable/ic_menu_agenda"/>
+</menu>
