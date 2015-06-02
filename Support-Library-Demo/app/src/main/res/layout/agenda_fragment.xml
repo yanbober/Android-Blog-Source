@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include layout="@layout/text_input_layout"
+        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></include>
 
@@ -13,9 +15,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="center"
-        android:src="@android:drawable/ic_input_add"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="20dp"></android.support.design.widget.FloatingActionButton>
+        android:src="@android:drawable/ic_input_add"></android.support.design.widget.FloatingActionButton>
 
-</RelativeLayout>
+</LinearLayout>

@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".SubActivity"
+            android:label="工匠若水详情"></activity>
     </application>
 
 </manifest>

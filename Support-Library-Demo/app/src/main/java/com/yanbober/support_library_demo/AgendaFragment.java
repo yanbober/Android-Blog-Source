@@ -30,7 +30,7 @@ public class AgendaFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mParentView = inflater.inflate(R.layout.info_details_fragment, container, false);
+        mParentView = inflater.inflate(R.layout.agenda_fragment, container, false);
         return mParentView;
     }
 

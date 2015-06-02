@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  * 一个中文版Demo App搞定所有Android的Support Library新增所有兼容控件
- * 2015 Google I/O大会Android Design Support Library
+ * 支持最新2015 Google I/O大会Android Design Support Library
  */
 public class MainActivity extends ActionBarActivity {
     //将ToolBar与TabLayout结合放入AppBarLayout
