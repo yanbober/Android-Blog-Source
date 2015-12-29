@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="press"
+        android:id="@+id/press_menu_id"
+        android:enabled="true"
+        android:orderInCategory="100"
+        android:icon="@mipmap/ic_launcher"
+        android:showAsAction="always"
+        android:visible="true"></item>
+</menu>

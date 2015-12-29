@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ViewDragHelper-Demo</string>
+    <string name="btn_1_str">垂直DrawerLayout示例</string>
+</resources>
