@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="left_list_content">
+        <item>新浪微博</item>
+        <item>天天爱消除</item>
+        <item>QQ空间</item>
+        <item>微信</item>
+        <item>京东商城</item>
+        <item>天猫商城</item>
+        <item>当当网</item>
+        <item>百度全家桶</item>
+        <item>芒果TV</item>
+        <item>优酷视频</item>
+        <item>工匠若水</item>
+        <item>左岸花城</item>
+        <item>2016 Run</item>
+    </string-array>
+</resources>
