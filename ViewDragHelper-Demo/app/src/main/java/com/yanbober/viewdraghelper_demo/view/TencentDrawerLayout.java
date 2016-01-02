@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.nineoldandroids.view.ViewHelper;
 
 /**
@@ -21,8 +20,6 @@ public class TencentDrawerLayout extends ViewGroup {
 
     private View mTopView;
     private View mBottomView;
-    //左边拉出时展示的宽度，这里为了方便直接写死了，自己用时修改即可
-    private int mLeftShowSize;
     //当前实时滑动的百分比
     private float mCurMovePrecent = 0;
 
@@ -42,7 +39,6 @@ public class TencentDrawerLayout extends ViewGroup {
     private void initView() {
         Log.i(TAG, "initView------------------");
         mHelper = ViewDragHelper.create(this, 1, new ViewDragHelperCallback());
-        mLeftShowSize = 650;
     }
 
     @Override
@@ -53,12 +49,15 @@ public class TencentDrawerLayout extends ViewGroup {
         setMeasuredDimension(measuredWidth, measuredHeight);
         //只有两个子成员时才有效
         if (getChildCount() == 2) {
-            Log.i(TAG, "onMeasure------------------getChildCount() == 2");
             mBottomView = getChildAt(0);
             mTopView = getChildAt(1);
 
-            measureChildWithMargins(mBottomView, widthMeasureSpec, 0, heightMeasureSpec, 0);
-            measureChildWithMargins(mTopView, widthMeasureSpec, 0, heightMeasureSpec, 0);
+            MarginLayoutParams params = (MarginLayoutParams) mBottomView.getLayoutParams();
+            //限制大小为700以下
+            int width = (params.width < 0 || params.width > 700) ? 600 : params.width;
+            int btmWidthMeasureSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
+            measureChild(mBottomView, btmWidthMeasureSpec, heightMeasureSpec);
+            measureChild(mTopView, widthMeasureSpec, heightMeasureSpec);
         }
     }
 
@@ -67,7 +66,6 @@ public class TencentDrawerLayout extends ViewGroup {
         Log.i(TAG, "onLayout------------------");
         //只有layout changed了且只有两个子成员时才有效
         if (changed && getChildCount() == 2) {
-            Log.i(TAG, "onLayout------------------getChildCount() == 2");
             MarginLayoutParams params = (MarginLayoutParams) mBottomView.getLayoutParams();
             mBottomView.layout(params.leftMargin, params.topMargin,
                     mBottomView.getMeasuredWidth()+params.leftMargin,
@@ -82,7 +80,7 @@ public class TencentDrawerLayout extends ViewGroup {
 
     //通过smoothSlideViewTo打开侧栏，因为其他两个方法只能在callback的release中调运
     public void openLeftView() {
-        smoothSlideViewTo(mLeftShowSize);
+        smoothSlideViewTo(mBottomView.getMeasuredWidth());
     }
 
     //通过smoothSlideViewTo关闭侧栏，因为其他两个方法只能在callback的release中调运
@@ -100,7 +98,7 @@ public class TencentDrawerLayout extends ViewGroup {
 
     //判断当前左边侧栏是否打开状态，通过mLeftShowSize进行判断
     public boolean isLeftIsOpened() {
-        return mTopView.getLeft() == mLeftShowSize;
+        return mTopView.getLeft() == mBottomView.getMeasuredWidth();
     }
 
     @Override
@@ -124,37 +122,40 @@ public class TencentDrawerLayout extends ViewGroup {
         @Override
         public int clampViewPositionHorizontal(View child, int left, int dx) {
             //水平实时变化，最大挪动位置限制处理
-            return Math.min(Math.max(0, left), mLeftShowSize);
+            return Math.min(Math.max(0, left), mBottomView.getMeasuredWidth());
+        }
+
+        @Override
+        public int getViewHorizontalDragRange(View child) {
+            return ((child == mTopView) ? mTopView.getMeasuredWidth() : 0);
         }
 
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
             //计算出mTopView变化时占总变化宽度的的实时百分比
             if (changedView == mTopView) {
-                mCurMovePrecent = (mLeftShowSize - left) / (float)mLeftShowSize;
+                mCurMovePrecent = (mBottomView.getMeasuredWidth() - left) / (float)mBottomView.getMeasuredWidth();
             }
 
             //mCurMovePrecent(1,0)->topViewScale(1, 0.8)，二元一次方程m=mx+c
             float topViewScale = 0.2f * mCurMovePrecent + 0.8f;
             ViewHelper.setScaleX(mTopView, topViewScale);   //mTopView.setScaleX();
             ViewHelper.setScaleY(mTopView, topViewScale);   //mTopView.setScaleY();
-
+            //btmPrecent(0.8, 1)->topViewScale(1, 0.8)
             float btmPrecent = 1.8f-topViewScale;
             ViewHelper.setScaleY(mBottomView, btmPrecent);   //mBottomView.setScaleX();
             ViewHelper.setScaleX(mBottomView, btmPrecent);   //mBottomView.setScaleY();
-
             ViewHelper.setAlpha(mBottomView, btmPrecent);    //mBottomView.setAlpha();
-            float btmTransX = -mBottomView.getMeasuredWidth() + ((mBottomView.getMeasuredWidth())*(btmPrecent));
-            Log.i(TAG, "-----------------------get="+mBottomView.getTranslationX()+"---------btmTransX="+btmTransX);
-            ViewHelper.setTranslationX(mBottomView, btmTransX);    //mBottomView.setTranslationX();
 
+            float btmTransX = -mBottomView.getMeasuredWidth() * mCurMovePrecent;
+            ViewHelper.setTranslationX(mBottomView, btmTransX);    //mBottomView.setTranslationX();
         }
 
         @Override
         public void onViewReleased(View releasedChild, float xvel, float yvel) {
             //当松手后让其自动滚过去
             if (releasedChild == mTopView) {
-                int finalLeft = (xvel > 0 && mCurMovePrecent < 0.5) ? mLeftShowSize : 0;
+                int finalLeft = (xvel > 0 && mCurMovePrecent < 0.5) ? mBottomView.getMeasuredWidth() : 0;
                 Log.i(TAG, "----------------onViewReleased finalLeft="+finalLeft);
                 mHelper.settleCapturedViewAt(finalLeft, mTopView.getTop());
                 invalidate();
