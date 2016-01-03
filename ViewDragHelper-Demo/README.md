@@ -2,7 +2,7 @@
 
 ##说明
 
-该实例是博客 [xxx]() 的讲解实例Demo。
+该实例是博客 [《Android应用ViewDragHelper详解及部分源码浅析》](http://blog.csdn.net/yanbober/article/details/50419059) 的讲解实例Demo。
 
 ##ViewDragHelper的VerticalDrawerLayout垂直抽屉控件实现
 
