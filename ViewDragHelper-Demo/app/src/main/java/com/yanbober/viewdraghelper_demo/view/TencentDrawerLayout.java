@@ -1,17 +1,18 @@
 package com.yanbober.viewdraghelper_demo.view;
 
 import android.content.Context;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import com.nineoldandroids.view.ViewHelper;
-
 /**
  * 腾讯QQ侧边栏
- * 支持两种QQ侧边栏
+ * 支持QQ侧边栏，处理了包含ListView等触摸冲突问题
  */
 public class TencentDrawerLayout extends ViewGroup {
     private static final String TAG = "TencentDrawerLayout";
@@ -22,6 +23,8 @@ public class TencentDrawerLayout extends ViewGroup {
     private View mBottomView;
     //当前实时滑动的百分比
     private float mCurMovePrecent = 0;
+
+    private float mInitXpos, mInitYpos;
 
     public TencentDrawerLayout(Context context) {
         this(context, null);
@@ -37,13 +40,11 @@ public class TencentDrawerLayout extends ViewGroup {
     }
 
     private void initView() {
-        Log.i(TAG, "initView------------------");
         mHelper = ViewDragHelper.create(this, 1, new ViewDragHelperCallback());
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        Log.i(TAG, "onMeasure------------------");
         int measuredWidth = MeasureSpec.getSize(widthMeasureSpec);
         int measuredHeight = MeasureSpec.getSize(heightMeasureSpec);
         setMeasuredDimension(measuredWidth, measuredHeight);
@@ -51,6 +52,9 @@ public class TencentDrawerLayout extends ViewGroup {
         if (getChildCount() == 2) {
             mBottomView = getChildAt(0);
             mTopView = getChildAt(1);
+            //debug use
+            mBottomView.setTag("mBottomView");
+            mTopView.setTag("mTopView");
 
             MarginLayoutParams params = (MarginLayoutParams) mBottomView.getLayoutParams();
             //限制大小为700以下
@@ -63,7 +67,6 @@ public class TencentDrawerLayout extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        Log.i(TAG, "onLayout------------------");
         //只有layout changed了且只有两个子成员时才有效
         if (changed && getChildCount() == 2) {
             MarginLayoutParams params = (MarginLayoutParams) mBottomView.getLayoutParams();
@@ -103,7 +106,23 @@ public class TencentDrawerLayout extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return mHelper.shouldInterceptTouchEvent(ev);
+        boolean helper = mHelper.shouldInterceptTouchEvent(ev);
+        boolean result = false;
+
+        switch (MotionEventCompat.getActionMasked(ev)) {
+            case MotionEvent.ACTION_DOWN:
+                mInitXpos = ev.getX();
+                mInitYpos = ev.getY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                if (Math.abs(ev.getX()-mInitXpos) - Math.abs(ev.getY()-mInitYpos) > ViewConfiguration.getTouchSlop()) {
+                    result = true;
+                    //ACTION_MOVE时已经过了tryCaptureView，故想挪动则使用captureChildView即可
+                    mHelper.captureChildView(mTopView, ev.getPointerId(0));
+                }
+                break;
+        }
+        return helper || result;
     }
 
     @Override
@@ -115,6 +134,8 @@ public class TencentDrawerLayout extends ViewGroup {
     private class ViewDragHelperCallback extends ViewDragHelper.Callback {
         @Override
         public boolean tryCaptureView(View child, int pointerId) {
+            //类似策划栏，当左边打开时也可以通过触摸左边区域挪动mTopView的位置，类似于onEdgeDragStarted中调运
+            mHelper.captureChildView(mTopView, pointerId);
             //上面的View是需要变化的
             return child == mTopView;
         }
@@ -156,7 +177,6 @@ public class TencentDrawerLayout extends ViewGroup {
             //当松手后让其自动滚过去
             if (releasedChild == mTopView) {
                 int finalLeft = (xvel > 0 && mCurMovePrecent < 0.5) ? mBottomView.getMeasuredWidth() : 0;
-                Log.i(TAG, "----------------onViewReleased finalLeft="+finalLeft);
                 mHelper.settleCapturedViewAt(finalLeft, mTopView.getTop());
                 invalidate();
             }
