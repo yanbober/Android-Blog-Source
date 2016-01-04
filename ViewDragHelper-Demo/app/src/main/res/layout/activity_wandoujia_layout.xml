@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yanbober.viewdraghelper_demo.view.WanDouJiaLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@android:color/holo_blue_dark">
+        <TextView
+            android:text="我是测试头部内容"
+            android:textSize="28sp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/top_click_btn"
+            android:text="测试焦点按钮"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.view.PagerTabStrip
+            android:background="@android:color/holo_blue_dark"
+            android:id="@+id/pager_tab_strip_can_exchange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v4.view.PagerTabStrip>
+
+    </android.support.v4.view.ViewPager>
+
+</com.yanbober.viewdraghelper_demo.view.WanDouJiaLayout>

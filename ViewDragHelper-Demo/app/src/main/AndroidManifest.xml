@@ -20,6 +20,8 @@
 
         <activity android:name=".ViewDragHelperActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+
+        <activity android:name=".WanDouJiaActivity"></activity>
     </application>
 
 </manifest>
