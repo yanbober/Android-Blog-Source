@@ -17,7 +17,7 @@
     <TextView
         android:text="gsgsgsdg"
         android:background="@android:color/holo_blue_bright"
-        android:layout_width="500dp"
+        android:layout_width="100dp"
         android:layout_height="50dp" />
 
 </com.yanbober.scroller_demo.HorizontalFlingLayout>
