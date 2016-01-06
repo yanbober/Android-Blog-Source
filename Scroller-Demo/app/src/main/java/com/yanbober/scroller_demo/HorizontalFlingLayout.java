@@ -2,7 +2,6 @@ package com.yanbober.scroller_demo;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -78,8 +77,9 @@ public class HorizontalFlingLayout extends LinearLayout {
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 int offset = ((getScrollX() / (float)mRightView.getWidth()) > 0.5) ? mRightView.getWidth() : 0;
-                this.scrollTo(offset, 0);
-
+//                this.scrollTo(offset, 0);
+                mScroller.startScroll(this.getScrollX(), this.getScrollY(), offset-this.getScrollX(), 0);
+                invalidate();
                 mInitX = 0;
                 mInitY = 0;
                 mOffsetX = 0;
@@ -89,5 +89,11 @@ public class HorizontalFlingLayout extends LinearLayout {
         return super.dispatchTouchEvent(ev);
     }
 
-
+    @Override
+    public void computeScroll() {
+        if (mScroller.computeScrollOffset()) {
+            this.scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
+            postInvalidate();
+        }
+    }
 }
