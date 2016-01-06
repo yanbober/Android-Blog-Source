@@ -37,9 +37,7 @@ public class ListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_listview_checkbox_layout, parent, false);
-        }
+        convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_listview_checkbox_layout, parent, false);
 
         TextView textView = (TextView) convertView.findViewById(R.id.name);
         textView.setText(mList.get(position).mName);

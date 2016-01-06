@@ -1,53 +1,27 @@
 package com.yanbober.scroller_demo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.AbsListView;
-import android.widget.ListView;
+import android.view.View;
+import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
-    private ListView mListView;
-
-    private ListAdapter mAdapter;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private Button mButton1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mListView = (ListView) findViewById(R.id.listview);
-        mAdapter = new ListAdapter();
-        mListView.setAdapter(mAdapter);
-        mListView.setChoiceMode(ListView.CHOICE_MODE_NONE);
-        mListView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
-            @Override
-            public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+        mButton1 = (Button) findViewById(R.id.btn1);
+        mButton1.setOnClickListener(this);
+    }
 
-            }
-
-            @Override
-            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                getMenuInflater().inflate(R.menu.menu_layout, menu);
-                return true;
-            }
-
-            @Override
-            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-                return false;
-            }
-
-            @Override
-            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                return false;
-            }
-
-            @Override
-            public void onDestroyActionMode(ActionMode mode) {
-
-            }
-        });
+    @Override
+    public void onClick(View v) {
+        if (v == mButton1) {
+            startActivity(new Intent(MainActivity.this, HorScrollerLayoutActivity.class));
+        }
     }
 }

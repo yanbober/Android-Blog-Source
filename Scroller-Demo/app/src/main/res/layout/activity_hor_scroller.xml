@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/bg_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"></ListView>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <com.yanbober.scroller_demo.HorizontalFlingLayout
+            android:layout_width="150dp"
+            android:layout_height="150dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/test"/>
+
+            <TextView
+                android:layout_width="50dp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_red_light"
+                android:textSize="20sp"
+                android:text="删除"/>
+        </com.yanbober.scroller_demo.HorizontalFlingLayout>
+
+        <com.yanbober.scroller_demo.HorizontalFlingLayout
+            android:layout_marginLeft="10dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/test"/>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="50dp"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/holo_red_light"
+                    android:textSize="30sp"
+                    android:text="删除"/>
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/holo_green_light"
+                    android:textSize="30sp"
+                    android:text="添加"/>
+            </LinearLayout>
+        </com.yanbober.scroller_demo.HorizontalFlingLayout>
+    </LinearLayout>
+</LinearLayout>
