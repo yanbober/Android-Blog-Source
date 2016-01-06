@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yanbober.scroller_demo.HorizontalFlingLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:gravity="center_vertical"
     android:layout_width="match_parent"
+    android:focusable="true"
     android:layout_height="50dp">
 
     <TextView
+        android:background="@android:color/holo_red_light"
         android:id="@+id/name"
         android:text="Test Demo"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 
-</LinearLayout>
+    <TextView
+        android:text="gsgsgsdg"
+        android:background="@android:color/holo_blue_bright"
+        android:layout_width="500dp"
+        android:layout_height="50dp" />
+
+</com.yanbober.scroller_demo.HorizontalFlingLayout>

@@ -3,11 +3,17 @@
     android:id="@+id/bg_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="100dp"></ListView>
+
+    <include layout="@layout/item_listview_checkbox_layout"
+        android:layout_marginTop="100dp"
+        android:layout_height="100dp"
+        android:layout_width="match_parent"></include>
 </LinearLayout>
