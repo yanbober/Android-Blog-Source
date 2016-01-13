@@ -62,7 +62,7 @@ public class HorizontalFlingLayout extends LinearLayout {
                 //>0为手势向右下
                 mOffsetX = ev.getX() - mInitX;
                 mOffsetY = ev.getY() - mInitY;
-                //横向手势
+                //横向手势跟随移动
                 if (Math.abs(mOffsetX) - Math.abs(mOffsetY) > ViewConfiguration.getTouchSlop()) {
                     int offset = (int) -mOffsetX;
                     if (getScrollX() + offset > mRightView.getWidth() || getScrollX() + offset < 0) {
@@ -76,6 +76,7 @@ public class HorizontalFlingLayout extends LinearLayout {
                 break;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
+                //松手时刻滑动
                 int offset = ((getScrollX() / (float)mRightView.getWidth()) > 0.5) ? mRightView.getWidth() : 0;
 //                this.scrollTo(offset, 0);
                 mScroller.startScroll(this.getScrollX(), this.getScrollY(), offset-this.getScrollX(), 0);
