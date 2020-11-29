@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="cn.yan.appstartup">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.JetpackAppStartupDemo">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <!-- This entry makes ExampleLoggerInitializer discoverable. -->
+            <meta-data  android:name="cn.yan.appstartup.Binitializer"
+                android:value="androidx.startup" />
+            <meta-data  android:name="cn.yan.appstartup.Cinitializer"
+                android:value="androidx.startup" />
+            <meta-data  android:name="cn.yan.appstartup.DasAinitializer"
+                android:value="androidx.startup" />
+        </provider>
+    </application>
+
+</manifest>
